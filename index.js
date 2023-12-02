@@ -1,6 +1,7 @@
     const mongoose = require('mongoose');
     const express = require('express');
     const userRoutes = require('./routes/userRoutes');
+    const thoughtRoutes = require('./routes/thoughtRoutes');
 
     require('dotenv').config();
 
@@ -9,6 +10,7 @@
     app.use(express.json()); // parse JSON req bodies
 
     app.use('/api/users', userRoutes);
+    app.use('/api/thoughts', thoughtRoutes);
 
     mongoose.connect(process.env.MONGODB_URI, { 
         useNewUrlParser: true, 
