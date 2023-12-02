@@ -61,6 +61,38 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-// Changed mind, friend routes will be made here
+// POST to add a friend
+router.post('/:userId/friends/:friendId', async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(
+            req.params.userId,
+            { $addToSet: { friends: req.params.friendId } }, // Prevent duplicate friends
+            { new: true, runValidators: true }
+        );
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.json({ message: 'Friend added successfully', user });
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+
+// DELETE to remove a friend
+router.delete('/:userId/friends/:friendId', async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(
+            req.params.userId,
+            { $pull: { friends: req.params.friendId } },
+            { new: true }
+        );
+        if (!user) {
+            return res.status(404).json({ message: 'User not found or friend not in list' });
+        }
+        res.json({ message: 'Friend removed successfully', user });
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
 
 module.exports = router;
