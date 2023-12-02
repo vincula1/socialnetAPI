@@ -31,3 +31,7 @@ npm start
 - **Single Item GET Routes**: ![Get by ID](Assets/18-nosql-homework-demo-02.gif)
 - **POST, PUT, DELETE Routes**: ![Post Put Delete routes](Assets/18-nosql-homework-demo-03.gif)
 - **Friend list POST and DELETE**: ![Friend list](Assets/18-nosql-homework-demo-04.gif)
+
+## Walkthrough Video
+
+https://watch.screencastify.com/v/TIQ4udCVKAJaDnygYzYW
